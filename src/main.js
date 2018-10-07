@@ -1,3 +1,4 @@
 import Game from './Game';
 
-console.log("yolo");
+window.game = new Game(document.getElementById('container'));
+

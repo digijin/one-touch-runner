@@ -1,8 +1,9 @@
 import * as PIXI from 'pixi.js'
 
-class Game{
-    constructor(){
-
+class Game extends PIXI.Application{
+    constructor(container){
+        super();
+        container.appendChild(this.view);
     }
 }
 
