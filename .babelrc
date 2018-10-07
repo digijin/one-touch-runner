@@ -3,6 +3,7 @@
   "ignore": [],
   "plugins": [],
   "presets": [
+    "@babel/preset-flow",
     "@babel/preset-env"
   ]
 }
