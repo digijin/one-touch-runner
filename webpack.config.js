@@ -58,6 +58,8 @@ module.exports = {
     }, {
       test: /\.(png|jpg)$/,
       use: [{
+      //   loader: path.resolve('textureLoader.js')
+      // }, {
         loader: 'img-element-loader'
       }, {
         loader: 'url-loader'
