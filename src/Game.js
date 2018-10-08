@@ -2,6 +2,7 @@
 import * as PIXI from 'pixi.js';
 
 import Player from './Player';
+import Objects from './Objects';
 
 class Game extends PIXI.Application {
   constructor(container) {
@@ -12,6 +13,7 @@ class Game extends PIXI.Application {
     });
     container.appendChild(this.view);
     this.stage.addChild(new Player());
+    this.stage.addChild(new Objects());
     this.ticker.add(this.update, this);
   }
 
