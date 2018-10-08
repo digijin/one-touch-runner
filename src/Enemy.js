@@ -1,5 +1,7 @@
 import * as PIXI from 'pixi.js';
 
+import config from './config';
+
 import wickets from './assets/wickets.png';
 import esky from './assets/esky.png';
 import ball from './assets/ball.png';
@@ -20,12 +22,12 @@ export default class Enemy extends PIXI.Sprite {
     super(texture);
     // this.tint = 0xff0000;
     this.x = window.innerWidth;
-    this.y = 200;
+    this.y = config.ground;
     this.width = 100;
     this.height = 100;
   }
 
   update(delta) {
-    this.x -= 10 * delta;
+    this.x -= config.scrollSpeed * delta;
   }
 }
