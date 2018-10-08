@@ -5,5 +5,5 @@ export default {
     height: 480,
   },
   scrollSpeed: 10,
-  ground: 300,
+  ground: 400,
 };

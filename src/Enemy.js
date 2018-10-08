@@ -25,6 +25,7 @@ export default class Enemy extends PIXI.Sprite {
     this.y = config.ground;
     this.width = 100;
     this.height = 100;
+    this.anchor = { x: 0.5, y: 1 };
   }
 
   update(delta) {
