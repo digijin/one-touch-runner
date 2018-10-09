@@ -1,9 +1,9 @@
 
 export default {
   stage: {
-    width: 640,
+    width: 800,
     height: 480,
   },
-  scrollSpeed: 10,
+  scrollSpeed: 8,
   ground: 400,
 };

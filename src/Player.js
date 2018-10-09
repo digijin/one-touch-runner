@@ -15,6 +15,7 @@ export default class Player extends PIXI.Sprite {
       this.height = 200;
       //   this.tint = 0;
       this.anchor = { x: 0.5, y: 1 };
+      this.x = 100;
 
       document.addEventListener('mousedown', () => {
         this.h = -20;
