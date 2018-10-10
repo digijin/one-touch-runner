@@ -5,7 +5,15 @@ import Player from './Player';
 import Objects from './Objects';
 import Background from './Background';
 
+export const PlayerState = {
+  WAIT: 'wait',
+  RUN: 'run',
+  JUMP: 'jump',
+};
+
 class Game extends PIXI.Application {
+  state = PlayerState.WAIT;
+
   constructor(container) {
     super({
       width: window.innerWidth,
@@ -13,9 +21,9 @@ class Game extends PIXI.Application {
       transparent: true,
     });
     container.appendChild(this.view);
-    this.stage.addChild(new Background());
-    this.stage.addChild(new Player());
-    this.stage.addChild(new Objects());
+    this.stage.addChild(new Background(this));
+    this.stage.addChild(new Player(this));
+    this.stage.addChild(new Objects(this));
     this.ticker.add(this.update, this);
   }
 
