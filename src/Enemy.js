@@ -33,5 +33,8 @@ export default class Enemy extends PIXI.Sprite {
   update() {
     // this.x -= config.scrollSpeed * delta;
     this.x = config.stage.width + config.obstacle.width + this.startOffset - this.app.offset;
+    if (this.x < -config.obstacle.width) {
+      this.parent.removeChild(this);
+    }
   }
 }
