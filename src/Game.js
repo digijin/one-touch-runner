@@ -1,6 +1,8 @@
 // @flow
 import * as PIXI from 'pixi.js';
 
+import config from './config';
+
 import Player from './Player';
 import Objects from './Objects';
 import Background from './Background';
@@ -20,8 +22,8 @@ class Game extends PIXI.Application {
 
   constructor(container) {
     super({
-      width: window.innerWidth,
-      height: window.innerHeight,
+      width: config.stage.width,
+      height: config.stage.height,
       transparent: true,
     });
     container.appendChild(this.view);

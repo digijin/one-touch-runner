@@ -15,20 +15,23 @@ const images = [wickets,
 
 
 export default class Enemy extends PIXI.Sprite {
-  constructor() {
+  constructor(app) {
     const img = images[Math.floor(images.length * Math.random())];
     const texture = new PIXI.Texture(new PIXI.BaseTexture(img));
 
     super(texture);
+    this.app = app;
+    this.startOffset = this.app.offset;
     // this.tint = 0xff0000;
     this.x = window.innerWidth;
     this.y = config.ground;
-    this.width = 100;
-    this.height = 100;
+    this.width = config.obstacle.width;
+    this.height = config.obstacle.height;
     this.anchor = { x: 0.5, y: 1 };
   }
 
-  update(delta) {
-    this.x -= config.scrollSpeed * delta;
+  update() {
+    // this.x -= config.scrollSpeed * delta;
+    this.x = config.stage.width + config.obstacle.width + this.startOffset - this.app.offset;
   }
 }

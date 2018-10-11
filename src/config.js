@@ -6,4 +6,13 @@ export default {
   },
   scrollSpeed: 8,
   ground: 400,
+  obstacle: {
+    width: 100,
+    height: 100,
+  },
+  player: {
+    width: 100,
+    height: 200,
+    animationSpeed: 0.2,
+  },
 };

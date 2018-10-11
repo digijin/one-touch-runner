@@ -35,8 +35,8 @@ export default class Player extends PIXI.extras.AnimatedSprite {
       // const texture = new PIXI.Texture(baseTexture);
       super([walktextures[0]], false);
       this.app = app;
-      this.width = 100;
-      this.height = 200;
+      this.width = config.player.width;
+      this.height = config.player.height;
       //   this.tint = 0;
       this.anchor = { x: 0.5, y: 1 };
       this.x = 100;
@@ -51,7 +51,7 @@ export default class Player extends PIXI.extras.AnimatedSprite {
         // this.textures = walktextures;
       });
       // this.gotoAndPlay(1)
-      this.animationSpeed = 0.2;
+      this.animationSpeed = config.player.animationSpeed;
       this.play();
     }
 
