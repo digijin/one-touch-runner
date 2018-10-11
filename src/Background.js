@@ -1,22 +1,44 @@
 import * as PIXI from 'pixi.js';
 import config from './config';
 
-import img from './assets/CricketPitch.jpg';
+import img from './assets/Crowd.png';
+import imgBg from './assets/cloudSky.jpg';
 
 // import { PlayerState } from './Game';
 
-export default class Background extends PIXI.extras.TilingSprite {
+
+class Front extends PIXI.extras.TilingSprite {
   constructor(app) {
     const texture = new PIXI.Texture(new PIXI.BaseTexture(img));
     super(texture, config.stage.width, config.stage.height);
     this.app = app;
-    // this.tint = 0xff0000;
   }
 
   update() {
-    // if (this.app.state === PlayerState.RUN || this.app.state === PlayerState.JUMP) {
-    //   this.tilePosition.x -= delta * config.scrollSpeed;
-    // }
     this.tilePosition.x = -this.app.offset;
+  }
+}
+
+class Back extends PIXI.extras.TilingSprite {
+  constructor(app) {
+    const texture = new PIXI.Texture(new PIXI.BaseTexture(imgBg));
+    super(texture, config.stage.width, config.stage.height);
+    this.app = app;
+  }
+
+  update() {
+    this.tilePosition.x = -this.app.offset / 2;
+  }
+}
+
+
+export default class Background extends PIXI.Container {
+  constructor(app) {
+    super();
+    this.app = app;
+    this.back = new Back(app);
+    this.addChild(this.back);
+    this.front = new Front(app);
+    this.addChild(this.front);
   }
 }
