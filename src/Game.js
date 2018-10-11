@@ -6,6 +6,8 @@ import config from './config';
 import Player from './Player';
 import Objects from './Objects';
 import Background from './Background';
+import Score from './Score';
+import Intro from './Intro';
 
 export const PlayerState = {
   WAIT: 'wait',
@@ -30,6 +32,8 @@ class Game extends PIXI.Application {
     this.stage.addChild(new Background(this));
     this.stage.addChild(new Objects(this));
     this.stage.addChild(new Player(this));
+    this.stage.addChild(new Score(this));
+    this.stage.addChild(new Intro(this));
     this.ticker.add(this.update, this);
   }
 
