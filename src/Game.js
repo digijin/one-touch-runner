@@ -14,6 +14,10 @@ export const PlayerState = {
 class Game extends PIXI.Application {
   state = PlayerState.WAIT;
 
+  offset = 0;
+
+  offsetDelta = 0;
+
   constructor(container) {
     super({
       width: window.innerWidth,
@@ -22,8 +26,8 @@ class Game extends PIXI.Application {
     });
     container.appendChild(this.view);
     this.stage.addChild(new Background(this));
-    this.stage.addChild(new Player(this));
     this.stage.addChild(new Objects(this));
+    this.stage.addChild(new Player(this));
     this.ticker.add(this.update, this);
   }
 

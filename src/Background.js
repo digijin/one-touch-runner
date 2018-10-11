@@ -3,7 +3,7 @@ import config from './config';
 
 import img from './assets/CricketPitch.jpg';
 
-import { PlayerState } from './Game';
+// import { PlayerState } from './Game';
 
 export default class Background extends PIXI.extras.TilingSprite {
   constructor(app) {
@@ -13,9 +13,10 @@ export default class Background extends PIXI.extras.TilingSprite {
     // this.tint = 0xff0000;
   }
 
-  update(delta) {
-    if (this.app.state === PlayerState.RUN || this.app.state === PlayerState.JUMP) {
-      this.tilePosition.x -= delta * config.scrollSpeed;
-    }
+  update() {
+    // if (this.app.state === PlayerState.RUN || this.app.state === PlayerState.JUMP) {
+    //   this.tilePosition.x -= delta * config.scrollSpeed;
+    // }
+    this.tilePosition.x = -this.app.offset;
   }
 }

@@ -57,6 +57,12 @@ export default class Player extends PIXI.extras.AnimatedSprite {
 
     update(delta) {
       super.update(delta);
+      if (this.app.state === PlayerState.RUN || this.app.state === PlayerState.JUMP) {
+        this.app.offsetDelta = delta * config.scrollSpeed;
+        this.app.offset += this.app.offsetDelta;
+      } else {
+        this.app.offsetDelta = 0;
+      }
       if (this.app.state === PlayerState.JUMP) {
         this.h += delta;
         this.y += this.h;
