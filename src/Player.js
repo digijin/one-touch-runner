@@ -10,7 +10,12 @@ import walk3 from './assets/Shane_Po3.png';
 
 import jump from './assets/ShaneJump.png';
 
+import fall1 from './assets/ShaneFallOne.png';
+import fall2 from './assets/ShaneFallTwo.png';
+
 import { PlayerState } from './Game';
+
+import Rect from './Rect';
 
 // const States = {
 //   WAIT: 'wait',
@@ -22,6 +27,8 @@ import { PlayerState } from './Game';
 const walktextures = [walk1, walk2, walk3]
   .map(i => new PIXI.Texture(new PIXI.BaseTexture(i)));
 const jumptextures = [jump]
+  .map(i => new PIXI.Texture(new PIXI.BaseTexture(i)));
+const falltextures = [fall1, fall2]
   .map(i => new PIXI.Texture(new PIXI.BaseTexture(i)));
 
 
@@ -58,23 +65,46 @@ export default class Player extends PIXI.extras.AnimatedSprite {
     update(delta) {
       super.update(delta);
       if (this.app.state === PlayerState.RUN || this.app.state === PlayerState.JUMP) {
-        const scrollspeed = config.scrollSpeed + Math.floor(this.app.offset / 1000);
+        const scrollspeed = config.scrollSpeed + Math.floor(this.app.offset / 5000);
 
         this.app.offsetDelta = delta * scrollspeed;
         this.app.offset += this.app.offsetDelta;
       } else {
         this.app.offsetDelta = 0;
       }
-      if (this.app.state === PlayerState.JUMP) {
+      if (this.app.state === PlayerState.JUMP || this.app.state === PlayerState.END) {
         this.h += delta;
         this.y += this.h;
         if (this.y > config.ground) {
-          this.app.state = PlayerState.RUN;
-          this.y = config.ground;
-          this.textures = walktextures;
-          // this.gotoAndPlay(1);
           this.h = 0;
+          this.y = config.ground;
+          if (this.app.state === PlayerState.JUMP) {
+            this.app.state = PlayerState.RUN;
+            this.textures = walktextures;
+          }
+          // this.gotoAndPlay(1);
         }
       }
+
+      // collisions
+      if (this.app.state !== PlayerState.END) {
+        if (this.collides()) {
+          this.app.state = PlayerState.END;
+          this.textures = falltextures;
+        }
+      }
+    }
+
+    collides() {
+      const playerRect = Rect.fromSprite(this);
+      const obs = this.app.objects.children;
+      if (obs.length > 0) {
+        // todo loop over all children not just first
+        const obRect = Rect.fromSprite(obs[0]);
+        if (obRect.overlaps(playerRect)) {
+          return true;
+        }
+      }
+      return false;
     }
 }

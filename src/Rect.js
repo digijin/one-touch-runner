@@ -2,6 +2,7 @@
 
 import { extend } from 'lodash';
 import config from './config';
+// import { particles } from '../node_modules/pixi.js';
 
 // import Point from './Point';
 
@@ -24,10 +25,10 @@ export default class Rect {
 
   static fromSprite(sprite: { position: { x: number, y: number } }) {
     return new Rect({
-      t: sprite.position.y,
-      l: sprite.position.x,
-      b: sprite.position.y + sprite.height,
-      r: sprite.position.x + sprite.width,
+      t: sprite.position.y - (sprite.height * sprite.anchor.y),
+      l: sprite.position.x - (sprite.width * sprite.anchor.x),
+      b: sprite.position.y + (sprite.height * (1 - sprite.anchor.y)),
+      r: sprite.position.x + (sprite.width * (1 - sprite.anchor.y)),
     });
   }
 

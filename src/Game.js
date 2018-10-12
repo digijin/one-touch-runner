@@ -13,6 +13,7 @@ export const PlayerState = {
   WAIT: 'wait',
   RUN: 'run',
   JUMP: 'jump',
+  END: 'end',
 };
 
 class Game extends PIXI.Application {
@@ -28,9 +29,12 @@ class Game extends PIXI.Application {
       height: config.stage.height,
       transparent: true,
     });
+
+    this.objects = new Objects(this);
+
     container.appendChild(this.view);
     this.stage.addChild(new Background(this));
-    this.stage.addChild(new Objects(this));
+    this.stage.addChild(this.objects);
     this.stage.addChild(new Player(this));
     this.stage.addChild(new Score(this));
     this.stage.addChild(new Intro(this));
