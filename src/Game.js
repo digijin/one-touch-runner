@@ -53,6 +53,13 @@ class Game extends PIXI.Application {
       this.recurseUpdate(child, delta);
     });
   }
+
+  restart() {
+    this.offset = 0;
+    this.offsetDelta = 0;
+    this.objects.children.forEach(c => this.objects.removeChild(c));
+    this.state = PlayerState.WAIT;
+  }
 }
 
 export default Game;

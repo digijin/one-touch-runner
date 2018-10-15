@@ -50,7 +50,10 @@ export default class Player extends PIXI.extras.AnimatedSprite {
       this.y = config.ground;
 
       document.addEventListener('mousedown', () => {
-        if (this.app.state !== PlayerState.JUMP) {
+        if (this.app.state === PlayerState.END) {
+          this.textures = [walktextures[0]];
+          this.app.restart();
+        } else if (this.app.state !== PlayerState.JUMP) {
           this.app.state = PlayerState.JUMP;
           this.h = -20;
           this.textures = jumptextures;
