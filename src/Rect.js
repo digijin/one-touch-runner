@@ -124,4 +124,14 @@ export default class Rect {
         l: this.l + rect.l,
       });
     }
+
+    // makes rect smaller
+    trim(amount):Rect {
+      return new Rect({
+        t: Math.floor(this.t + amount),
+        r: Math.ceil(this.r - amount),
+        b: Math.ceil(this.b - amount),
+        l: Math.floor(this.l + amount),
+      });
+    }
 }
