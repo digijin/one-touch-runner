@@ -5,7 +5,7 @@ export default class Score extends PIXI.Container {
     super();
     this.app = app;
     this.text = new PIXI.Text('Score: 0', {
-      fontFamily: 'Arial', fontSize: 24, fill: 0xff1010, align: 'center',
+      fontFamily: 'gamefont', fontSize: 24, fill: 0xff1010, align: 'center',
     });
     this.addChild(this.text);
   }

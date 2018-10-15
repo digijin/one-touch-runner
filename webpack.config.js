@@ -1,8 +1,5 @@
-const webpack = require('webpack')
-const path = require('path')
-
-
-
+const webpack = require('webpack');
+const path = require('path');
 
 /*
  * SplitChunksPlugin is enabled by default and replaced
@@ -27,55 +24,77 @@ const path = require('path')
 
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
-
-
-
 module.exports = {
   module: {
-    rules: [{
-      include: [path.resolve(__dirname, 'src')],
-      loader: 'babel-loader',
+    rules: [
+      {
+        include: [path.resolve(__dirname, 'src')],
+        loader: 'babel-loader',
 
-      options: {
-        plugins: ['syntax-dynamic-import'],
+        options: {
+          plugins: ['syntax-dynamic-import'],
 
-        presets: [['@babel/preset-env', {
-          'modules': false
-        }]]
+          presets: [
+            [
+              '@babel/preset-env',
+              {
+                modules: false,
+              },
+            ],
+          ],
+        },
+
+        test: /\.js$/,
       },
+      {
+        test: /\.(scss|css)$/,
 
-      test: /\.js$/
-    }, {
-      test: /\.(scss|css)$/,
-
-      use: [{
-        loader: 'style-loader'
-      }, {
-        loader: 'css-loader'
-      }, {
-        loader: 'sass-loader'
-      }]
-    }, {
-      test: /\.(png|jpg)$/,
-      use: [{
-      //   loader: path.resolve('textureLoader.js')
-      // }, {
-        loader: 'img-element-loader'
-      }, {
-        loader: 'url-loader'
-      }]
-    }]
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader: 'sass-loader',
+          },
+        ],
+      },
+      {
+        test: /\.(png|jpg)$/,
+        use: [
+          {
+            //   loader: path.resolve('textureLoader.js')
+            // }, {
+            loader: 'img-element-loader',
+          },
+          {
+            loader: 'url-loader',
+          },
+        ],
+      },
+      {
+        test: /\.ttf$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            // limit: 50000,
+          },
+        },
+      },
+    ],
   },
 
   entry: './src/main',
 
   devServer: {
-    contentBase: './dist'
+    contentBase: './dist',
   },
 
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
   },
 
   mode: 'development',
@@ -85,14 +104,14 @@ module.exports = {
       cacheGroups: {
         vendors: {
           priority: -10,
-          test: /[\\/]node_modules[\\/]/
-        }
+          test: /[\\/]node_modules[\\/]/,
+        },
       },
 
       chunks: 'async',
       minChunks: 1,
       minSize: 30000,
-      name: true
-    }
-  }
-}
+      name: true,
+    },
+  },
+};

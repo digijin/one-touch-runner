@@ -8,7 +8,7 @@ export default class Intro extends PIXI.Container {
     super();
     this.app = app;
     this.text = new PIXI.Text('TAP OR CLICK TO START', {
-      fontFamily: 'Arial', fontSize: 48, fill: 0x0, align: 'center',
+      fontFamily: 'gamefont', fontSize: 48, fill: 0x0, align: 'center',
     });
     this.addChild(this.text);
     this.text.anchor = { x: 0.5, y: 0.5 };
