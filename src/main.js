@@ -1,4 +1,5 @@
 import webfontloader from 'webfontloader';
+import './style.scss';
 import Game from './Game';
 
 // funny business to ensure font is ready to go before starting game
@@ -11,4 +12,4 @@ webfontloader.load({
   },
 });
 
-require('./style.scss');
+// require('./style.scss');

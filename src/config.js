@@ -4,7 +4,7 @@ export default {
     width: 800,
     height: 480,
   },
-  scrollSpeed: 8,
+  scrollSpeed: 10,
   ground: 400,
   obstacle: {
     width: 100,
