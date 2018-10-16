@@ -11,7 +11,7 @@ import walk3 from './assets/Shane_Po3.png';
 import jump from './assets/ShaneJump.png';
 
 import fall1 from './assets/ShaneFallOne.png';
-import fall2 from './assets/ShaneFallTwo.png';
+// import fall2 from './assets/ShaneFallTwo.png';
 
 import { PlayerState } from './Game';
 
@@ -28,7 +28,7 @@ const walktextures = [walk1, walk2, walk3]
   .map(i => new PIXI.Texture(new PIXI.BaseTexture(i)));
 const jumptextures = [jump]
   .map(i => new PIXI.Texture(new PIXI.BaseTexture(i)));
-const falltextures = [fall1, fall2]
+const falltextures = [fall1]// , fall2]
   .map(i => new PIXI.Texture(new PIXI.BaseTexture(i)));
 
 
@@ -45,14 +45,12 @@ export default class Player extends PIXI.extras.AnimatedSprite {
       this.width = config.player.width;
       this.height = config.player.height;
       //   this.tint = 0;
-      this.anchor = { x: 0.5, y: 1 };
-      this.x = 100;
-      this.y = config.ground;
+      this.init();
 
       document.addEventListener('mousedown', () => {
         if (this.app.state === PlayerState.END) {
-          this.textures = [walktextures[0]];
           this.app.restart();
+          this.init();
         } else if (this.app.state !== PlayerState.JUMP) {
           this.app.state = PlayerState.JUMP;
           this.h = -20;
@@ -63,6 +61,14 @@ export default class Player extends PIXI.extras.AnimatedSprite {
       // this.gotoAndPlay(1)
       this.animationSpeed = config.player.animationSpeed;
       this.play();
+    }
+
+
+    init() {
+      this.anchor = { x: 0.5, y: 1 };
+      this.x = 100;
+      this.y = config.ground;
+      this.textures = [walktextures[0]];
     }
 
     update(delta) {
@@ -94,6 +100,8 @@ export default class Player extends PIXI.extras.AnimatedSprite {
         if (this.collides()) {
           this.app.state = PlayerState.END;
           this.textures = falltextures;
+          this.x += 100;
+          this.anchor.y = 0.5;
         }
       }
     }
@@ -101,9 +109,11 @@ export default class Player extends PIXI.extras.AnimatedSprite {
     collides() {
       const playerRect = Rect.fromSprite(this);
       const obs = this.app.objects.children;
-      if (obs.length > 0) {
+      // for loop so I can return
+      for (let i = 0; i < obs.length; i += 1) {
+      // if (obs.length > 0) {
         // todo loop over all children not just first
-        const obRect = Rect.fromSprite(obs[0]);
+        const obRect = Rect.fromSprite(obs[i]);
         if (obRect.overlaps(playerRect)) {
           return true;
         }
