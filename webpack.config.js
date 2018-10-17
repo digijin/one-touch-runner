@@ -75,7 +75,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.ttf$/,
+        test: /\.(ttf|otf)$/,
         use: {
           loader: 'url-loader',
           options: {
