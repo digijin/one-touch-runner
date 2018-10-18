@@ -18,6 +18,11 @@ export const PlayerState = {
   END: 'end',
 };
 
+function setSize() {
+  const scale = window.innerWidth / config.stage.width;
+  document.querySelector('meta[name="viewport"]').setAttribute('content', `width=${config.stage.width}, initial-scale=${scale}`);
+}
+
 class Game extends PIXI.Application {
   state = PlayerState.WAIT;
 
@@ -46,7 +51,10 @@ class Game extends PIXI.Application {
     this.stage.addChild(new Outro(this));
     this.stage.addChild(new CricketLogo());
     this.ticker.add(this.update, this);
+    setSize();
+    // window.addEventListener('resize', this.setSize);
   }
+
 
   update(delta) {
     this.offsetBest = Math.max(this.offset, this.offsetBest);

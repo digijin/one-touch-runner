@@ -4,13 +4,15 @@ import config from './config';
 
 import wickets from './assets/wickets.png';
 import esky from './assets/esky.png';
-import ball from './assets/ball.png';
-import chips from './assets/HotChips.png';
+// import ball from './assets/ball.png';
+// import chips from './assets/HotChips.png';
+import gulls from './assets/seaGulls.png';
 
 const images = [wickets,
   esky,
-  ball,
-  chips,
+  // ball,
+  // chips,
+  gulls,
 ];
 
 

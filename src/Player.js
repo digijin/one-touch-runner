@@ -77,7 +77,7 @@ export default class Player extends PIXI.extras.AnimatedSprite {
     update(delta) {
       super.update(delta);
       if (this.app.state === PlayerState.RUN || this.app.state === PlayerState.JUMP) {
-        const scrollspeed = config.scrollSpeed + Math.floor(this.app.offset / 5000);
+        const scrollspeed = config.scrollSpeed + Math.floor(this.app.offset / 4000);
 
         this.app.offsetDelta = delta * scrollspeed;
         this.app.offset += this.app.offsetDelta;

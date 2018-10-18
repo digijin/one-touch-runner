@@ -41,9 +41,13 @@ export default class Outro extends PIXI.Container {
 
     this.restart.interactive = true;
     this.restart.buttonMode = true;
-    this.restart.click = () => {
+    // this.restart.click = () => {
+    //   this.app.restart();
+    // };
+
+    this.restart.on('pointerdown', () => {
       this.app.restart();
-    };
+    });
   }
 
   update() {
