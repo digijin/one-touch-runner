@@ -47,17 +47,20 @@ export default class Player extends PIXI.extras.AnimatedSprite {
       //   this.tint = 0;
       this.init();
 
-      document.addEventListener('mousedown', () => {
+      const handler = () => {
         if (this.app.state === PlayerState.END) {
-          this.app.restart();
-          this.init();
+          // this.app.restart();
+          // this.init();
         } else if (this.app.state !== PlayerState.JUMP) {
           this.app.state = PlayerState.JUMP;
           this.h = -20;
           this.textures = jumptextures;
         }
         // this.textures = walktextures;
-      });
+      };
+
+      document.addEventListener('mousedown', handler);
+      document.addEventListener('touchstart', handler);
       // this.gotoAndPlay(1)
       this.animationSpeed = config.player.animationSpeed;
       this.play();

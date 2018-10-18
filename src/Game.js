@@ -8,6 +8,7 @@ import Objects from './Objects';
 import Background from './Background';
 import Score from './Score';
 import Intro from './Intro';
+import Outro from './Outro';
 import CricketLogo from './CricketLogo';
 
 export const PlayerState = {
@@ -22,6 +23,8 @@ class Game extends PIXI.Application {
 
   offset = 0;
 
+  offsetBest = 0;
+
   offsetDelta = 0;
 
   constructor(container) {
@@ -32,18 +35,21 @@ class Game extends PIXI.Application {
     });
 
     this.objects = new Objects(this);
+    this.player = new Player(this);
 
     container.appendChild(this.view);
     this.stage.addChild(new Background(this));
     this.stage.addChild(this.objects);
-    this.stage.addChild(new Player(this));
+    this.stage.addChild(this.player);
     this.stage.addChild(new Score(this));
     this.stage.addChild(new Intro(this));
+    this.stage.addChild(new Outro(this));
     this.stage.addChild(new CricketLogo());
     this.ticker.add(this.update, this);
   }
 
   update(delta) {
+    this.offsetBest = Math.max(this.offset, this.offsetBest);
     this.recurseUpdate(this.stage, delta);
   }
 
@@ -61,6 +67,7 @@ class Game extends PIXI.Application {
     this.offsetDelta = 0;
     this.objects.children.forEach(c => this.objects.removeChild(c));
     this.state = PlayerState.WAIT;
+    this.player.init();
   }
 }
 

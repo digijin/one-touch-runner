@@ -15,7 +15,7 @@ export default class Objects extends PIXI.Container {
       // if (this.app.state === PlayerState.RUN || this.app.state === PlayerState.JUMP) {
       this.counter -= this.app.offsetDelta;
       if (this.counter < 0) {
-        this.counter = 100 + Math.random() * 800;
+        this.counter = 400 + Math.random() * 800;
         this.addChild(new Enemy(this.app));
       }
       // }
