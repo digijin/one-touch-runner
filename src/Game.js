@@ -19,8 +19,9 @@ export const PlayerState = {
 };
 
 function setSize() {
-  const scale = window.innerWidth / config.stage.width;
-  document.querySelector('meta[name="viewport"]').setAttribute('content', `width=${config.stage.width}, initial-scale=${scale}`);
+  // const scale = window.innerWidth / config.stage.width;
+  // document.querySelector('meta[name="viewport"]')
+  // .setAttribute('content', `width=${config.stage.width}, initial-scale=${scale}`);
 }
 
 class Game extends PIXI.Application {
